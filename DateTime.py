@@ -16,3 +16,9 @@ dailyData["weather"] = dailyData.weather.map({1: " Clear + Few clouds + Partly c
                                         2 : " Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist ", \
                                         3 : " Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds", \
                                         4 :" Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog " })
+
+data["date"] = data.datetime.apply(lambda x : x.split()[0])
+data["hour"] = data.datetime.apply(lambda x : x.split()[1].split(":")[0]).astype("int")
+data["year"] = data.datetime.apply(lambda x : x.split()[0].split("-")[0])
+data["weekday"] = data.date.apply(lambda dateString : datetime.strptime(dateString,"%Y-%m-%d").weekday())
+data["month"] = data.date.apply(lambda dateString : datetime.strptime(dateString,"%Y-%m-%d").month)
